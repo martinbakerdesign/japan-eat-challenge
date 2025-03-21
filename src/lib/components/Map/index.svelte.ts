@@ -77,6 +77,7 @@ export function fadeUnreviewed(el: SVGGElement, sectionId: PlazaSection) {
 		if (hasRestaurantBeenReviewed(restaurantId)) continue;
 
 		restaurant.classList.add('opacity-50');
+		restaurant.classList.add('cursor-default');
 	}
 }
 
