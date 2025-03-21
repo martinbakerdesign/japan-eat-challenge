@@ -1,1 +1,56 @@
 @import 'tailwindcss';
+ 
+@theme {
+  --color-background: 0 0% 100%;
+  --color-foreground: 20 14.3% 4.1%;
+
+  --color-muted: 60 4.8% 95.9%;
+  --color-muted-foreground: 25 5.3% 44.7%;
+
+  --color-popover: 0 0% 100%;
+  --color-popover-foreground: 20 14.3% 4.1%;
+
+  --color-card: 0 0% 100%;
+  --color-card-foreground: 20 14.3% 4.1%;
+
+  --color-border: 20 5.9% 90%;
+  --color-input: 20 5.9% 90%;
+
+  --color-primary: 24 9.8% 10%;
+  --color-primary-foreground: 60 9.1% 97.8%;
+
+  --color-secondary: 60 4.8% 95.9%;
+  --color-secondary-foreground: 24 9.8% 10%;
+
+  --color-accent: 60 4.8% 95.9%;
+  --color-accent-foreground: 24 9.8% 10%;
+
+  --color-destructive: 0 72.2% 50.6%;
+  --color-destructive-foreground: 60 9.1% 97.8%;
+
+  --color-ring: 20 14.3% 4.1%;
+
+  --color-radius: 0.5rem;
+}
+ 
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@theme {
+  --color-bg: #252B32;
+  --color-tier-bg: #353E45;
+  --color-tier-s: #FE7375;
+  --color-tier-a: #FDB372;
+  --color-tier-b: #B15BBE;
+  --color-tier-c: #75FF74;
+  --color-tier-d: #80C8FE;
+  --color-tier-f: #6865E1;
+  --color-border: #353E45;
+}
+
+.aspect-short {
+  aspect-ratio: 9 / 16;
+}
