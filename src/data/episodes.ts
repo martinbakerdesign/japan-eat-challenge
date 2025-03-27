@@ -1132,7 +1132,15 @@ const episodes = [
 		vidId: 'TID2M6OlHzE',
 		dish: 'Ladies Lunch Set',
 		restaurant: 'center-plaza__12'
-	}
+	},
+	{
+		id: 65,
+		tier: Tiers.A,
+		date: '2025-03-24',
+		vidId: 'Abss_3S2fVc',
+		dish: 'Tendon',
+		restaurant: 'center-plaza-west__14'
+	},
 ];
 
 export default episodes;

@@ -40,8 +40,9 @@ const restaurants = [
 	},
 	{
 		id: 'center-plaza-west__14',
-		name: '天丼 吉兵衛',
-		cat: ['Cafeteria']
+		name: 'Yoshibe Tendon (天丼 吉兵衛)',
+		cat: ['Tempura', 'Tendon'],
+		website: 'https://tabelog.com/hyogo/A2801/A280102/28006512/'
 	},
 	{
 		id: 'center-plaza-west__15',
@@ -435,7 +436,7 @@ const restaurants = [
 		id: 'san-plaza__4',
 		name: 'Butameshiya (豚めし家)',
         website: 'https://3nomiya.net/shops/butameshiya.html',
-		cat: ['Butadon']
+		cat: ['Buta Don']
 	},
 	{
 		id: 'san-plaza__5',
