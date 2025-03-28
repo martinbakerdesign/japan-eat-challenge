@@ -41,7 +41,7 @@
 
         {#if knownPlazaSection}
             <a
-                class="relative flex w-80 flex-col items-center justify-center overflow-hidden rounded-2xl bg-stone-900/10 p-8 col-start-2 row-start-1 row-end-5 h-full"
+                class="relative flex w-80 flex-col items-center justify-center overflow-hidden rounded-2xl bg-stone-900/10 p-8 col-start-2 row-start-1 row-end-5 h-full hover:bg-amber-800/15"
                 href="/plaza-map/{plazaSection}?highlight={highlight}"
             >
                 <h3
@@ -68,6 +68,7 @@
 						<h2 class="flex h-full w-full text-3xl font-medium">
 							<a
 								class="grid min-h-full w-full grid-cols-[1fr_auto] items-center gap-x-2 rounded-lg fill-current px-6 py-4 pr-0 hover:text-amber-500"
+                                target="_blank"
 								href={restaurant?.website}
 								>{restaurant?.name} <Icon icon="new-window--54" class="inline-flex w-5" /></a
 							>

@@ -6,7 +6,7 @@ export const tierTextVariants = {
     [Tiers.A]: 'text-tier-a',
     [Tiers.B]: 'text-tier-b',
     [Tiers.C]: 'text-tier-c',
-    [Tiers.D]: 'text-tier-D',
+    [Tiers.D]: 'text-tier-d',
     [Tiers.F]: 'text-tier-f',
 } as Record<Tier, string>;
 
@@ -15,7 +15,7 @@ export const tierBGVariants = {
     [Tiers.A]: 'bg-tier-a',
     [Tiers.B]: 'bg-tier-b',
     [Tiers.C]: 'bg-tier-c',
-    [Tiers.D]: 'bg-tier-D',
+    [Tiers.D]: 'bg-tier-d',
     [Tiers.F]: 'bg-tier-f',
 } as Record<Tier, string>;
 
