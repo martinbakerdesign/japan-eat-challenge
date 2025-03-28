@@ -1,5 +1,5 @@
 import { CenterPlazaWest, CenterPlaza, SanPlaza } from "$lib/components";
-import { PlazaSections } from "$types";
+import { PlazaSections } from "$constants";
 
 export const components = new Map<PlazaSection, any>([
     [PlazaSections[0], CenterPlazaWest],

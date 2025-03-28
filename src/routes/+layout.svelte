@@ -4,10 +4,11 @@
 	let { children } = $props();
 </script>
 
-<Nav />
 
-<div class="w-full max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl mx-auto min-h-[75svh]">
+<div class="w-full max-w-xl lg:max-w-3xl xl:max-w-5xl 2xl:max-w-7xl mx-auto min-h-[75svh] py-8">
+	<Nav />
+
 	{@render children()}
-</div>
 
-<Footer />
+	<Footer />
+</div>

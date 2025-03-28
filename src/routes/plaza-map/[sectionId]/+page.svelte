@@ -1,29 +1,29 @@
 <script lang="ts">
-	import { Card, List } from '$lib/components/Map/index.svelte';
+	import { Card, cardState } from '$lib/components/Map/index.svelte';
+    import List from '$lib/components/List';
 	import { onMount } from 'svelte';
-    import {components} from './'
-	import { cardState } from '$lib/components/Map/Card/index.svelte';
-	import { PlazaSections } from '$types';
 	import AdjacentSectionButton from './AdjacentSectionButton.svelte';
-	import type { PageProps } from './$types';
+	import { PlazaSections, PlazaSectionNames } from '$constants';
+	import type { PlazaPageData } from './+page';
+    import {components} from './'
 
-    let { data }: PageProps = $props();
+    let { data }: { data: PlazaPageData } = $props();
 
-    const Component = $derived(components.get(data.section));
-    const titles = {
-        'center-plaza-west': 'Center Plaza West',
-        'center-plaza': 'Center Plaza',
-        'san-plaza': 'San Plaza',
-    }
-    const title = $derived(titles[data.section]);
+    let Component = $derived(components.get(data.section));
+    let sectionName = $derived(PlazaSectionNames[data.section]);
 
-    const prevHref = $derived(`/plaza-map/${data.section === 'center-plaza' ? 'center-plaza-west' : 'center-plaza'}`);
-    const prevLabel = $derived(data.section === 'center-plaza' ? 'Center Plaza West' : 'Center Plaza');
-    const nextHref = $derived(`/plaza-map/${data.section === 'center-plaza' ? 'san-plaza' : 'center-plaza'}`);
-    const nextLabel = $derived(data.section === 'center-plaza' ? 'San Plaza' : 'Center Plaza');
+    let isFirstSection = $derived(PlazaSections[0] === data?.section);
+    let isLastSection = $derived(PlazaSections[2] === data?.section);
 
-    const isFirstSection = $derived(PlazaSections[0] === data?.section);
-    const isLastSection = $derived(PlazaSections[2] === data?.section);
+    let prevHref = $derived(!isFirstSection ? `/plaza-map/${data.section === 'center-plaza' ? 'center-plaza-west' : 'center-plaza'}` : null);
+    let prevLabel = $derived(!isFirstSection ? data.section === 'center-plaza' ? 'Center Plaza West' : 'Center Plaza' : null);
+    let nextHref = $derived(!isLastSection ? `/plaza-map/${data.section === 'center-plaza' ? 'san-plaza' : 'center-plaza'}` : null);
+    let nextLabel = $derived(!isLastSection ? data.section === 'center-plaza' ? 'San Plaza' : 'Center Plaza' : null);
+
+
+    const containerVariants = "w-full flex";
+
+    $inspect(data.highlight)
 
     onMount(() => {
         return () => {
@@ -33,31 +33,35 @@
     })
 </script>
 
-<h2 class="text-2xl font-semibold mt-14 text-center w-full">
-    {title}
-</h2>
+<div class="gap-x-2 grid grid-cols-[auto_1fr_auto] mb-2">
 
-<div class="gap-x-2 grid grid-cols-[12rem_1fr_12rem] items-center">
-    <div class="w-full flex justify-center">
-        {#if !isFirstSection}
+    <div class={containerVariants}>
         <AdjacentSectionButton href={prevHref} dir='left'>
             {prevLabel}
         </AdjacentSectionButton>
-        {/if}
     </div>
 
-    <div class="py-20 h-[65vh] grid items-center mx-auto ">
-        <Component />
+    <div class="h-[65vh] grid items-center grid-rows-[auto_1fr] w-full">
+
+        
+        <h2 class="text-xl font-semibold text-center mb-2 rounded-lg w-full bg-stone-600/15 p-4">
+            {sectionName}
+        </h2>
+
+        <div class="w-full h-full overflow-hidden rounded-lg bg-stone-600/15 p-14">
+            {#if Component}
+            <Component clickable={true} highlight={data.highlight} />
+            {/if}
+        </div>
         <Card />
     </div>
 
-    <div class="w-full flex justify-center">
-        {#if !isLastSection}
-            <AdjacentSectionButton href={nextHref} dir='right'>
-                {nextLabel}
-            </AdjacentSectionButton>
-        {/if}
+    <div class={containerVariants}>
+        <AdjacentSectionButton href={nextHref} dir='right'>
+            {nextLabel}
+        </AdjacentSectionButton>
     </div>
+
 </div>
 
 <!-- list -->

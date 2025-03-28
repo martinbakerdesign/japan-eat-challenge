@@ -76,3 +76,5 @@ export {default as removeEmojis} from './removeEmojis'
 export {default as extractCategoriesFromRestaurants} from './extractCategoriesFromRestaurants'
 
 export {default as routeToPage} from './routeToPage'
+
+export {default as splitNameIntoEnglishAndJapanese} from './splitNameIntoEnglishAndJapanese'

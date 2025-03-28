@@ -1,23 +1,25 @@
-import { Tiers } from "../types.d.ts";
+import { Tiers } from "./tiers";
+import type { Tier } from "$types";
 
-export const tierTextClassnames = {
+export const tierTextVariants = {
     [Tiers.S]: 'text-tier-s',
     [Tiers.A]: 'text-tier-a',
     [Tiers.B]: 'text-tier-b',
     [Tiers.C]: 'text-tier-c',
     [Tiers.D]: 'text-tier-D',
     [Tiers.F]: 'text-tier-f',
-} as const;
-export const tierBGClassnames = {
+} as Record<Tier, string>;
+
+export const tierBGVariants = {
     [Tiers.S]: 'bg-tier-s',
     [Tiers.A]: 'bg-tier-a',
     [Tiers.B]: 'bg-tier-b',
     [Tiers.C]: 'bg-tier-c',
     [Tiers.D]: 'bg-tier-D',
     [Tiers.F]: 'bg-tier-f',
-} as const;
+} as Record<Tier, string>;
 
 export default {
-    text: tierTextClassnames,
-    bg: tierBGClassnames,
+    text: tierTextVariants,
+    bg: tierBGVariants,
 };

@@ -1,13 +1,12 @@
 <script lang="ts">
     import { Tier } from "$lib/components";
-    import { Tiers } from "$types/Tiers";
-
-    const visibleTiers = Object.values(Tiers).slice(0, 4);
+    import { visibleTiers } from '.'
 </script>
 
-<ol>
+<ol class="flex flex-col gap-y-2">
     {#each visibleTiers as tier}
         <Tier {tier} />
     {/each}
-    <div class="bg-tier-bg p-4 rounded-sm text-center w-full font-semibold mt-1">The lower tiers aren't listed because that's kinda mean.</div>
+
+    <div class="flex justify-center w-full rounded-2xl bg-tier-bg/50 p-8 text-sm text-white/50 text-center font-medium">The lower tiers aren't listed because that's kinda mean.</div>
 </ol>

@@ -16,6 +16,7 @@ const config = {
 			'$data': 'src/data',
 			'$constants': 'src/constants',
 			'$state': 'src/state',
+			'$routes': 'src/routes',
 			'$types': 'src/types.d.ts',
 			'$types/*': 'src/types/*',
 			'$utils': 'src/lib/utils',

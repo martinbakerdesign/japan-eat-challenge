@@ -10,10 +10,10 @@ export {default as Tier} from './Tier';
 
 export {default as TierList} from './TierList';
 
-export {default as CategoryCloud} from './CategoryCloud';
-
 export {default as Icon} from './Icon';
 
 export {default as InlineLink} from './InlineLink.svelte';
+
+export {default as Tag} from './Tag';
 
 export {CenterPlazaWest, CenterPlaza, SanPlaza} from './Map/index.svelte';

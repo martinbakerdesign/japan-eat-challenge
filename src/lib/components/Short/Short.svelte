@@ -1,13 +1,16 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { updatePlayer, playerId, setupPlayer } from '.'
-	import { validateShortId } from '$utils';
+	import { cn, validateShortId } from '$utils';
 
 	export let id: ShortID|null|undefined;
 
 	onMount(setupPlayer(id));
 
 	$: updatePlayer(id);
+
+	let className = '';
+	export {className as class}
 	
     const vidAspect = [9,16];
     const vidWidth = 320;
@@ -19,7 +22,7 @@
 	$: src = idIsValid ? `https://www.youtube.com/embed/${id}` : null;
 </script>
 
-<div class="w-[320px] aspect-short flex-none grid items-center bg-black" >
+<div class={cn("w-[320px] aspect-short flex-none grid items-center bg-black", className)} >
 	{#if !idIsValid}
 	<div>uh oh!</div>
 	{:else}

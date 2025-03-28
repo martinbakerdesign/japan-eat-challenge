@@ -1,21 +1,19 @@
 import { restaurantByIdMap, restaurantToEpisodeMap } from '$data';
 import { hasRestaurantBeenReviewed, routeToPage } from '$lib/utils';
-import type { PlazaSection } from '$types/PlazaSections';
+import type { PlazaSection } from '$types/PlazaSection';
 
 import { cardState, hoveredRestaurant } from './Card/index.svelte';
 
 export { default as CenterPlazaWest } from './Map--Center-Plaza-West.svelte';
+
 export { default as CenterPlaza } from './Map--Center-Plaza.svelte';
+
 export { default as SanPlaza } from './Map--San-Plaza.svelte';
 
-export { default as Card } from './Card/index.svelte';
+export { default as Card, cardState } from './Card/index.svelte';
 
-export { default as List } from './List';
+export const restaurantPolyClassname = 'restaurant cursor-pointer hover:opacity-80';
 
-function getRestaurantByCoords(coords: ShopCoords): Shop | null {
-	const id = coords.join('__');
-	return restaurantByIdMap.get(id) ?? null;
-}
 
 export function getRestaurantClickHandler(sectionId: PlazaSection): Function {
 	return (e: MouseEvent) => {
@@ -81,9 +79,41 @@ export function fadeUnreviewed(el: SVGGElement, sectionId: PlazaSection) {
 	}
 }
 
-export const restaurantPolyClassname = 'restaurant cursor-pointer hover:opacity-80';
+export let refs = {
+	restaurantsContainer: null
+}
 
-export function interactiveRestaurants (el:SVGGElement, sectionId: PlazaSection) {
-    fadeUnreviewed(el, sectionId)
-    setHandlers(el, sectionId)
+export function interactiveRestaurants (el: SVGElement|null, sectionId: PlazaSection, highlight: number|null, clickable: boolean) {
+
+	if (!el) return;
+
+	if (highlight) {
+		const restaurants = el.querySelectorAll('.restaurant');
+		restaurants.forEach((restaurant) => {
+			const id = +(restaurant.id.slice(1));
+
+			if (id === highlight) {
+				restaurant.style.fill = '#fff'
+				restaurant.classList.remove('opacity-40');
+			} else if (!clickable) {
+				restaurant.style.removeProperty('fill')
+				restaurant.classList.add('opacity-40');
+			}
+
+		});
+
+		if (!clickable) {
+			const other = el.closest('svg')?.querySelectorAll('.other')
+			other.forEach((el) => {
+				el.style.removeProperty('fill')
+			})
+			el.classList.add('pointer-default')
+			el.classList.add('pointer-events-none')
+		}
+	}
+
+	if (!clickable) return;
+	
+	fadeUnreviewed(el, sectionId)
+	setHandlers(el, sectionId)
 }

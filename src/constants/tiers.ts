@@ -1,5 +1,3 @@
-import type { Tier } from ".";
-
 export const Tiers = {
     'S': 'S',
     'A': 'A',
@@ -13,4 +11,7 @@ export const Tiers = {
 
 export const TiersOrdered = [Tiers.S, Tiers.A, Tiers.B, Tiers.C, Tiers.D, Tiers.F];
 
-export default Tiers;
+export default {
+    Tiers,
+    TiersOrdered
+}

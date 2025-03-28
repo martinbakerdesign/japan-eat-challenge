@@ -23,7 +23,3 @@ declare global {
     } from './types/Restaurant';
     
 }
-
-export { Tiers, TiersOrdered } from './types/Tiers';
-
-export {default as PlazaSections} from './types/PlazaSections';

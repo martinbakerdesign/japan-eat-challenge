@@ -14,13 +14,13 @@
     const hrefId = $derived(id ? (direction === 'prev' ? id - 1 : id + 1) : null);
 </script>
 
-<div class="p-6 align-middle flex items-center flex-none">
+<div>
     {#if !id}
     <Icon {icon} class="fill-current w-10 opacity-30" />
     {:else}
     <a href={`/episodes/${hrefId}`}  class="flex flex-col items-center gap-y-4">
         <Icon {icon} class="fill-current w-10 hover:fill-amber-500" />
-        {hrefId}
+        <!-- {hrefId} -->
     </a>
     {/if}
 </div>

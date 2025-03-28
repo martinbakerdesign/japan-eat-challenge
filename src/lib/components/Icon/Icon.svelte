@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { cn } from '$utils';
 	import { extractIconSize, icons } from '.';
 
 	let iconId: keyof typeof icons;
@@ -14,7 +15,7 @@
 
 {#if pathsFound}
 	<svg
-		class="inline-block aspect-square {className}"
+		class={cn("inline-block aspect-square fill-inherit", className)}
 		viewBox="0 0 {iconSize} {iconSize}"
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg"

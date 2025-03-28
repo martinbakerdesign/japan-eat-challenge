@@ -1,0 +1,1 @@
+export type PlazaSection = 'center-plaza-west'|'center-plaza'|'san-plaza';

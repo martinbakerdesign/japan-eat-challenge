@@ -1,34 +1,42 @@
-<script>
-	import { PlazaSections } from '$types';
+<script lang="ts">
+	import { PlazaSections } from '$constants';
 	import { restaurantPolyClassname, interactiveRestaurants } from './index.svelte';
+
+    let { highlight = null, clickable = false }: { clickable: boolean, highlight: number|null } = $props();
+
+    let el: null|SVGElement = null;
+
+    $effect(() => {
+        interactiveRestaurants(el, PlazaSections[1], highlight, clickable)
+    })
 </script>
 
-<svg width="100%" height="100%" viewBox="0 0 834 491" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;" class="h-full">
+<svg width="100%" height="100%" viewBox="0 0 834 491" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;" class="w-full">
     <path id="walls-stairs" d="M0.576,487.862L834.862,487.862L834.862,490.697L0.576,490.697L0.576,487.862ZM55.326,410.629L55.326,306.4L96.637,306.4L96.637,410.629L55.326,410.629ZM74.564,407.794L74.564,309.235L58.16,309.235L58.16,407.794L74.564,407.794ZM77.399,407.794L93.802,407.794L93.802,309.235L77.399,309.235L77.399,407.794ZM419.394,52.857L419.394,107.807L416.559,107.807L416.559,81.013L344.455,81.013L344.455,112.71L294.414,112.71L294.414,109.875L341.621,109.875L341.621,104.452L294.414,104.452L294.414,101.617L341.621,101.617L341.621,96.194L294.414,96.194L294.414,93.36L341.621,93.36L341.621,87.937L294.414,87.937L294.414,85.102L341.621,85.102L341.621,79.679L294.414,79.679L294.414,76.844L341.621,76.844L341.621,71.421L294.414,71.421L294.414,68.587L341.621,68.587L341.621,62.105L105.742,90.152L105.407,87.338L834.528,0.64L834.862,3.455L419.394,52.857ZM416.559,78.178L416.559,53.194L344.455,61.768L344.455,78.178L416.559,78.178ZM654.024,168.777L654.024,165.943L698.536,165.943L698.536,154.921L654.024,154.921L654.024,152.086L701.37,152.086L701.37,168.777L654.024,168.777ZM728.84,93.694L731.675,93.694L731.675,127.86L654.024,127.86L654.024,125.026L728.84,125.026L728.84,93.694ZM782.587,127.837L743.134,127.837L743.134,152.086L782.587,152.086L782.587,154.921L719.578,154.921L719.578,165.943L782.587,165.943L782.587,168.777L716.743,168.777L716.743,152.086L740.299,152.086L740.299,93.694L743.134,93.694L743.134,125.002L748.897,125.002L748.897,93.694L751.732,93.694L751.732,125.002L756.421,125.002L756.421,93.694L759.255,93.694L759.255,125.002L764.44,125.002L764.44,93.694L767.274,93.694L767.274,125.002L772.459,125.002L772.459,93.694L775.294,93.694L775.294,125.002L782.587,125.002L782.587,127.837ZM357.96,349.255L360.795,349.255L360.795,398.549L357.96,398.549L357.96,349.255ZM349.187,349.255L352.022,349.255L352.022,398.549L349.187,398.549L349.187,349.255ZM305.322,349.255L308.157,349.255L308.157,398.549L305.322,398.549L305.322,349.255ZM314.095,349.255L316.93,349.255L316.93,398.549L314.095,398.549L314.095,349.255ZM340.414,349.255L343.249,349.255L343.249,398.549L340.414,398.549L340.414,349.255ZM322.868,349.255L325.703,349.255L325.703,398.549L322.868,398.549L322.868,349.255ZM542.285,378.092L542.285,375.257L569.599,375.257L569.599,355.046L572.434,355.046L572.434,375.257L577.481,375.257L577.481,355.046L580.316,355.046L580.316,375.257L586.187,375.257L586.187,355.046L589.022,355.046L589.022,375.257L594.893,375.257L594.893,355.046L597.728,355.046L597.728,375.257L603.599,375.257L603.599,355.046L606.434,355.046L606.434,375.257L612.305,375.257L612.305,355.046L615.14,355.046L615.14,375.257L621.011,375.257L621.011,355.046L623.846,355.046L623.846,400.072L621.011,400.072L621.011,378.092L615.14,378.092L615.14,400.072L612.305,400.072L612.305,378.092L606.434,378.092L606.434,400.072L603.599,400.072L603.599,378.092L597.728,378.092L597.728,400.072L594.893,400.072L594.893,378.092L589.022,378.092L589.022,400.072L586.187,400.072L586.187,378.092L580.316,378.092L580.316,400.072L577.481,400.072L577.481,378.092L572.434,378.092L572.434,400.072L569.599,400.072L569.599,378.092L542.285,378.092ZM366.733,349.255L369.568,349.255L369.568,398.549L366.733,398.549L366.733,349.255ZM331.641,349.255L334.476,349.255L334.476,398.549L331.641,398.549L331.641,349.255Z" style="fill:rgb(65,66,80);"/>
     <g id="shops">
-        <g id="other"  class="opacity-25">
-            <rect id="_58" x="290.838" y="335.665" width="86.654" height="13.59" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
-            <path id="_56" d="M159.001,231.479L76.344,231.479L81.345,207.435L159.001,207.435L159.001,231.479Z" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
-            <path id="_55" d="M159.001,203.183L82.23,203.183L87.164,179.462L159.001,179.462L159.001,203.183Z" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
-            <path id="_54" d="M159.001,147.283L159.001,175.21L88.049,175.21L93.858,147.283L159.001,147.283Z" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
-            <path id="_53" d="M163.253,168.777L163.253,143.031L94.743,143.031L105.742,90.152L211.961,77.522L211.961,168.777L163.253,168.777Z" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
-            <rect id="_48" x="513.605" y="70.21" width="28.716" height="98.567" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
-            <path id="_44" d="M683.796,21.418L782.323,9.703L782.323,66.295L683.796,66.295L683.796,21.418Z" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
-            <rect id="_41" x="672.059" y="83.419" width="106.276" height="10.275" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
-            <path id="_40" d="M667.807,93.694L654.024,93.694L654.024,113.232L582.629,113.232L582.629,83.419L667.807,83.419L667.807,93.694Z" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
-            <rect id="_32" x="614.903" y="196.168" width="29.464" height="51.852" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
-            <rect id="_31" x="571.691" y="196.168" width="38.96" height="51.852" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
-            <rect id="_29" x="469.49" y="196.168" width="27.113" height="51.852" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
-            <rect id="_24" x="184.737" y="196.168" width="63.868" height="51.852" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
-            <rect id="_22" x="232.926" y="252.272" width="61.047" height="55.957" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
-            <path id="_19" d="M484.321,308.229L440.986,308.229L440.986,196.168L465.238,196.168L465.238,252.272L484.321,252.272L484.321,308.229Z" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
-            <rect id="_14" x="648.619" y="252.272" width="74.064" height="55.957" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
-            <path id="_8" d="M498.737,441.257L569.173,441.257L569.173,400.072L666.694,400.072L666.694,335.665L715.727,335.665L715.727,487.862L498.737,487.862L498.737,441.257Z" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
-            <rect id="_7" x="569.599" y="335.665" width="67.22" height="19.381" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
-            <rect id="_6" x="498.737" y="335.665" width="43.548" height="42.427" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
-            <rect id="_5" x="439.641" y="335.665" width="54.844" height="152.197" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
+        <g id="other"  class="opacity-40">
+            <rect class="other" id="_58" x="290.838" y="335.665" width="86.654" height="13.59" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
+            <path class="other" id="_56" d="M159.001,231.479L76.344,231.479L81.345,207.435L159.001,207.435L159.001,231.479Z" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
+            <path class="other" id="_55" d="M159.001,203.183L82.23,203.183L87.164,179.462L159.001,179.462L159.001,203.183Z" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
+            <path class="other" id="_54" d="M159.001,147.283L159.001,175.21L88.049,175.21L93.858,147.283L159.001,147.283Z" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
+            <path class="other" id="_53" d="M163.253,168.777L163.253,143.031L94.743,143.031L105.742,90.152L211.961,77.522L211.961,168.777L163.253,168.777Z" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
+            <rect class="other" id="_48" x="513.605" y="70.21" width="28.716" height="98.567" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
+            <path class="other" id="_44" d="M683.796,21.418L782.323,9.703L782.323,66.295L683.796,66.295L683.796,21.418Z" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
+            <rect class="other" id="_41" x="672.059" y="83.419" width="106.276" height="10.275" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
+            <path class="other" id="_40" d="M667.807,93.694L654.024,93.694L654.024,113.232L582.629,113.232L582.629,83.419L667.807,83.419L667.807,93.694Z" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
+            <rect class="other" id="_32" x="614.903" y="196.168" width="29.464" height="51.852" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
+            <rect class="other" id="_31" x="571.691" y="196.168" width="38.96" height="51.852" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
+            <rect class="other" id="_29" x="469.49" y="196.168" width="27.113" height="51.852" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
+            <rect class="other" id="_24" x="184.737" y="196.168" width="63.868" height="51.852" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
+            <rect class="other" id="_22" x="232.926" y="252.272" width="61.047" height="55.957" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
+            <path class="other" id="_19" d="M484.321,308.229L440.986,308.229L440.986,196.168L465.238,196.168L465.238,252.272L484.321,252.272L484.321,308.229Z" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
+            <rect class="other" id="_14" x="648.619" y="252.272" width="74.064" height="55.957" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
+            <path class="other" id="_8" d="M498.737,441.257L569.173,441.257L569.173,400.072L666.694,400.072L666.694,335.665L715.727,335.665L715.727,487.862L498.737,487.862L498.737,441.257Z" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
+            <rect class="other" id="_7" x="569.599" y="335.665" width="67.22" height="19.381" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
+            <rect class="other" id="_6" x="498.737" y="335.665" width="43.548" height="42.427" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
+            <rect class="other" id="_5" x="439.641" y="335.665" width="54.844" height="152.197" style="fill:rgb(50,52,72);fill-rule:nonzero;"/>
         </g>
-        <g id="restaurants" use:interactiveRestaurants={PlazaSections[1]}>
+        <g id="restaurants" bind:this={el}>
             <path class={restaurantPolyClassname} id="_47" d="M513.605,66.283L513.605,41.655L622.602,28.694L622.602,66.295L542.321,66.295L513.605,66.283Z" style="fill:rgb(70,150,224);fill-rule:nonzero;"/>
             <path class={restaurantPolyClassname} id="_46" d="M626.854,28.189L651.248,25.288L651.248,66.295L626.854,66.295L626.854,28.189Z" style="fill:rgb(70,150,224);fill-rule:nonzero;"/>
             <path class={restaurantPolyClassname} id="_45" d="M679.544,66.295L655.5,66.295L655.5,24.783L679.544,21.924L679.544,66.295Z" style="fill:rgb(70,150,224);fill-rule:nonzero;"/>

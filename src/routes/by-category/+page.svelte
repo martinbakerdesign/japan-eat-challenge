@@ -1,15 +1,15 @@
 <script lang="ts">
-	import {CategoryCloud} from "$lib/components";
-	import { List } from "$lib/components/Map/index.svelte";
-	import {restaurants as allRestaurants} from "$data";
-	import { selectedCategories } from "$state/categories";
+	import { getFilteredRestaurants, selectedCategories, CategoryCloud } from ".";
+	import List from "$lib/components/List";
 
-    const restaurants = $derived(allRestaurants.filter(r => r.cat.some(c => selectedCategories.get(c))));
+    let restaurants = $derived(getFilteredRestaurants(selectedCategories));
 
 </script>
 
-<section class="py-14">
+<section>
 	<CategoryCloud />
 </section>
 
-<List {restaurants}/>
+<section class="mt-8">
+	<List {restaurants}/>
+</section>

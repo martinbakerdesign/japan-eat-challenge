@@ -1,4 +1,4 @@
-import { Tiers } from '$types';
+import { Tiers } from '$constants';
 
 // export const episodes = [
 //     {

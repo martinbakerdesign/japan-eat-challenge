@@ -1,70 +1,74 @@
 <script lang="ts">
-	import { tierTextClassnames } from '$constants';
-	import { Tiers } from '$types';
+	import { tierTextVariants, Tiers, tierBGVariants } from '$constants';
 	import { episodes } from '$data';
-  import { cardState, onMouseLeave, hoveredRestaurant } from './index.svelte'
-  import { computePosition, offset, flip  } from '@floating-ui/dom';
+	import { cardState, onMouseLeave, hoveredRestaurant } from './index.svelte';
+	import { computePosition, offset, flip } from '@floating-ui/dom';
 	import { InlineLink } from '$lib/components';
 
-  let floating: HTMLElement;
-  let reference: HTMLElement;
+	let floating: HTMLElement, reference: HTMLElement;
 
-  let episode = $state<Episode|null>(null);
-  const hasEpisode = $derived(episode != null);
-  $effect(() => {
-    episode = episodes.find(ep => ep.restaurant === $hoveredRestaurant?.id) ?? null;
-  });
-  $effect(() => {setPos(cardState.pos)})
+	let episode = $derived(episodes.find((ep) => ep.restaurant === $hoveredRestaurant?.id) ?? null);
+	let hasEpisode = $derived(episode != null);
+	$effect(() => {
+		setPos(cardState.pos);
+	});
+	$effect(() => {
+		if (cardState.pos[0] !== 0 || cardState.pos[1] !== 0) return;
+		cardState.show = false;
+	});
 
-  function setPos ([x,y]) {
-    if (reference && floating) {
-      computePosition(reference, floating, {
-        placement: 'top',
-        middleware: [
-          offset(8),
-          flip()
-        ],
-      }).then(({x, y}) => {
-        Object.assign(floating.style, {
-          left: `${x}px`,
-          top: `${y}px`
-        });
-      });
-    }
-  }
+	function setPos([x, y]) {
+		if (reference && floating) {
+			computePosition(reference, floating, {
+				placement: 'top',
+				middleware: [offset(8), flip()]
+			}).then(({ x, y }) => {
+				Object.assign(floating.style, {
+					left: `${x}px`,
+					top: `${y}px`
+				});
+			});
+		}
+	}
 </script>
 
-<div 
-  class="absolute pointer-events-none select-none" 
-  style="left: {cardState.pos[0]}px; top: {cardState.pos[1]}px;"
-  bind:this={reference}
+<div
+	class="pointer-events-none absolute select-none"
+	style="left: {cardState.pos[0]}px; top: {cardState.pos[1]}px;"
+	bind:this={reference}
 >
-  <div class="w-1 h-1 rounded-full"></div>
+	<div class="h-1 w-1 rounded-full"></div>
 </div>
 
 <div
-  bind:this={floating}
-  class="rounded-md shadow-lg p-1 grid grid-cols-[auto_1fr] gap-x-4 items-center bg-neutral-700 absolute top-0 left-0 max-w-80 hover:scale-105 hover:transition-scale hover:duration-200"
-  id="map__card"
-  on:mouseleave={onMouseLeave}
+	bind:this={floating}
+	class="hover:transition-scale absolute top-0 left-0 grid max-w-80 grid-cols-[auto_1fr] gap-x-2 rounded-lg bg-stone-600 p-2 shadow-xl hover:scale-105 hover:duration-200 items-start"
+	id="map__card"
+	onmouseleave={onMouseLeave}
+  hidden={!cardState.show}
+  aria-hidden={!cardState.show}
 >
-  {#if hasEpisode}
-    <InlineLink href="/episodes/{episode?.id}">Episode {episode.id}</InlineLink>
-    <img src="/assets/thumbnails/episode-{episode?.id}.webp" alt="Episode {episode?.id}" class="w-24 h-24 rounded-sm col-start-1 col-end-2 row-start-1" />
-  {/if}
-  <div class=" min-w-40 pr-2 col-start-2 row-start-1">
-    {#if hasEpisode && ![Tiers.D, Tiers.F].includes(episode?.tier)}
-      <div class="{tierTextClassnames[episode?.tier]} font-semibold text-xl">
-        {episode?.tier}
-      </div>
-    {/if}
-    <h3 class="font-semibold">{$hoveredRestaurant?.name}</h3>
-    {#if $hoveredRestaurant?.cat.length}
-    <ul class="mt-2 flex flex-wrap gap-1">
-      {#each $hoveredRestaurant?.cat as cat}
-      <li class="text-xs rounded-sm py-0.5 px-1 bg-amber-600">{cat}</li>
-      {/each}
-    </ul>
-    {/if}
-  </div>
+	{#if hasEpisode}
+		<InlineLink href="/episodes/{episode?.id}">Episode {episode.id}</InlineLink>
+		<img
+			src="/assets/thumbnails/episode-{episode?.id}.webp"
+			alt="Episode {episode?.id}"
+			class="col-start-1 col-end-2 row-start-1 h-24 w-24 rounded-md"
+		/>
+	{/if}
+	<div class="col-start-2 row-start-1 min-w-40 pr-2 grid gap-x-2 items-start grid-cols-[2rem_1fr] grid-rows-[auto_1fr]">
+		{#if hasEpisode && ![Tiers.D, Tiers.F].includes(episode?.tier)}
+			<div class="{tierBGVariants[episode?.tier]} text-xl font-semibold p-4 w-8 h-8 flex items-center justify-center text-stone-800 rounded-md col-start-1 row-start-1 col-end-2 row-end-2">
+				{episode?.tier}
+			</div>
+		{/if}
+		<h3 class="font-semibold col-start-2 row-start-1 row-end-2 col-end-3 pt-1">{$hoveredRestaurant?.name}</h3>
+		{#if $hoveredRestaurant?.cat.length}
+			<ul class="mt-2 flex flex-wrap gap-1 col-start-1 row-start-2 col-end-3 row-end-3">
+				{#each $hoveredRestaurant?.cat as cat}
+					<li class="rounded-sm bg-amber-600 px-1 py-0.5 text-xs">{cat}</li>
+				{/each}
+			</ul>
+		{/if}
+	</div>
 </div>

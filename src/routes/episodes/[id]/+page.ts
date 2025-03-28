@@ -3,7 +3,7 @@ import type { PageLoad } from './$types';
 import {episodes}from '$data'
 import {getEpisodeById} from '$utils';
 
-export const load: PageLoad = ({ params }) => {
+export const load: PageLoad<Episode> = ({ params }) => {
 	const epIds = episodes.map(ep => ep.id.toString());
 
 	if (epIds.includes(params.id)) {

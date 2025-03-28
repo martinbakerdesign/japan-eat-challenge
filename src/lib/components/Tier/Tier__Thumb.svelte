@@ -12,9 +12,9 @@
     $: japaneseName = restaurant?.name.includes('(') ? restaurant?.name.split('(')[1].slice(0,-1) : null;
 </script>
 
-<li class="relative w-34 hover:scale-110 transition-all duration-200 ease-in-out flex flex-col overflow-hidden rounded-md bg-stone-700">
+<li class="relative w-full hover:scale-110 transition-all duration-200 ease-in-out flex flex-col overflow-hidden rounded-lg bg-stone-700 p-1">
     <InlineLink {href}>{title}</InlineLink>
-    <img src={thumbSrc} alt={title} class="w-full aspect-[4/3]"/>
+    <img src={thumbSrc} alt={title} class="w-full aspect-[4/3] rounded-md"/>
     <span class="block p-1 truncate text-center">
         <span class="text-sm font-medium">{englishName}</span>
         {#if japaneseName}<span class="text-xs opacity-50 block truncate">{japaneseName}</span>{/if}

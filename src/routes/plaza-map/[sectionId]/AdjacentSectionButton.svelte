@@ -14,15 +14,16 @@
     } : Props = $props();
 
     const icon = $derived(dir === 'left' ? 'circle-chevron-left--24' : 'circle-chevron-right--24');
+    const baseClassnames = 'flex flex-col w-32 justify-center items-center text-center gap-y-2 fill-current rounded-lg h-full bg-amber-300/5 text-sm p-4';
 </script>
 
 {#if href}
-<a {href} class="flex flex-col w-full items-center gap-y-2 fill-current hover:text-amber-500">
+<a {href} class="{baseClassnames} hover:text-amber-500">
     <Icon {icon} class="w-10 fill-inherit" />
     <div>{@render children()}</div>
 </a>
 {:else}
-<div class="flex flex-col w-full items-center gap-y-2 fill-current opacity-30">
+<div class="{baseClassnames} opacity-30">
     <Icon {icon} class="w-10 fill-inherit" />
     <div>{@render children()}</div>
 </div>
