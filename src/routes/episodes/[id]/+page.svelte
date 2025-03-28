@@ -29,9 +29,9 @@
 	</div>
 
 	<div
-		class="grid h-full w-full grid-cols-[1fr_auto] grid-rows-[auto_auto_1fr_auto] items-start gap-y-8 rounded-2xl bg-stone-800 px-8 py-6 gap-x-8"
+		class="grid h-full w-full grid-cols-[1fr_auto] grid-rows-[auto_auto_1fr_auto] items-start gap-8 rounded-2xl bg-stone-800 p-3 gap-x-16"
 	>
-		<div class="flex justify-between w-full items-center gap-x-40 text-xs text-stone-500 col-start-1 row-start-1">
+		<div class="flex justify-between w-full items-center gap-x-40 text-xs text-stone-500 col-start-1 row-start-1 mt-4 ml-6">
 			<h1>Episode {data.id}</h1>
 			<h2>
 				{data.date}
@@ -41,11 +41,11 @@
 
         {#if knownPlazaSection}
             <a
-                class="relative flex w-80 flex-col items-center justify-center overflow-hidden rounded-2xl bg-stone-900/10 p-8 col-start-2 row-start-1 row-end-5 h-full hover:bg-amber-800/15"
+                class="relative flex w-80 flex-col items-center justify-center overflow-hidden rounded-xl bg-stone-900/15 p-8 col-start-2 row-start-1 row-end-5 h-full hover:bg-amber-800/15"
                 href="/plaza-map/{plazaSection}?highlight={highlight}"
             >
                 <h3
-                    class="absolute inset-6 text-center text-xs font-medium tracking-wider uppercase opacity-50 select-none"
+                    class="absolute inset-6 text-center text-xs font-medium tracking-wider uppercase opacity-35 select-none"
                 >
                     {PlazaSectionNames[plazaSection]}
                 </h3>
@@ -53,7 +53,7 @@
             </a>
         {/if}
 
-		<div class="flex w-full flex-col justify-center col-start-1 row-start-2 self-end">
+		<div class="flex w-full flex-col justify-center col-start-1 row-start-2 self-end mt-8 ml-6">
 			<div class="grid grid-cols-[auto_1fr] items-start gap-x-2">
 				<h2
 					class="{tierBGVariants[
@@ -87,7 +87,7 @@
 			</h2>
 		</div>
 
-        <ul class="flex flex-wrap gap-1 row-start-4 col-start-1">
+        <ul class="flex flex-wrap gap-1 row-start-4 col-start-1 ml-6 mb-4">
             {#each restaurant.cat as category}
                 <Tag>{category}</Tag>
             {/each}
