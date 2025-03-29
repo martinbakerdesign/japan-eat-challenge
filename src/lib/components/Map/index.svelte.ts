@@ -165,18 +165,15 @@ async function initiateZoom(el: SVGElement) {
 
 	svgZoom = svgPanZoom(el, {
 		viewportSelector: '.zoom-window',
-		panEnabled: true,
 		controlIconsEnabled: false,
+		panEnabled: true,
 		zoomEnabled: true,
 		dblClickZoomEnabled: false,
-		mouseWheelZoomEnabled: true,
-		preventMouseEventsDefault: true,
+		mouseWheelZoomEnabled: false,
+		preventMouseEventsDefault: false,
 		zoomScaleSensitivity: 0.2,
 		minZoom: zoomConstraints[0],
 		maxZoom: zoomConstraints[1],
-		onPan: (e) => {
-			console.log('Pan', e)
-		},
 		fit: true,
 		contain: false,
 		center: true,
@@ -186,7 +183,6 @@ async function initiateZoom(el: SVGElement) {
 
 function disableZoom(el: SVGElement) {
 	if (!svgZoom) return;
-	console.log('disabling zoom')
 	svgZoom.zoom(1);
 	svgZoom.center()
 	svgZoom.reset();

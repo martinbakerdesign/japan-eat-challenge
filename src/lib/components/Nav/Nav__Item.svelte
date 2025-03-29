@@ -3,7 +3,7 @@
 
 	let { href = null, children, target = '', class: className = '', canClick = false } = $props();
 
-	const baseClassname = 'rounded-md flex items-center gap-x-2 fill-current bg-stone-800/30 px-5 py-3 text-sm font-medium transition-colors duration-100 justify-center';
+	const baseClassname = 'rounded-md flex items-center gap-x-2 fill-current bg-stone-800/30 px-5 py-3 text-sm font-medium transition-colors duration-100 justify-center backdrop-blur-2xl';
 	const hoverClassname = 'hover:bg-amber-500 cursor-pointer';
 </script>
 
