@@ -15,7 +15,7 @@
 
 		<TouchToggle />
 		
-		<ul id="nav-menu" class="hidden md:flex md:flex-wrap flex-col fixed top-18 left-0 right-0 p-2 rounded-xl bg-stone-200/50 backdrop-blur-2xl md:backdrop-blur-none md:bg-transparent md:rounded-none md:p-0 md:static md:flex-row md:items-center md:justify-start gap-1 {isTouch.current ? '' : ''}" hidden={isTouch.current && !isTouchMenuOpen.current} aria-hidden={isTouch.current && !isTouchMenuOpen.current} >
+		<ul id="nav-menu" class="hidden md:flex md:flex-wrap flex-col fixed top-18 left-0 right-0 p-2 rounded-xl bg-stone-200/50 backdrop-blur-2xl z-20 md:backdrop-blur-none md:bg-transparent md:rounded-none md:p-0 md:static md:flex-row md:items-center md:justify-start gap-1 {isTouch.current ? '' : ''}" hidden={isTouch.current && !isTouchMenuOpen.current} aria-hidden={isTouch.current && !isTouchMenuOpen.current} >
 			<Item href="/tier-list">Tier List</Item>
 			<Item href="/by-category">by Category/Cuisine</Item>
 			<li>
