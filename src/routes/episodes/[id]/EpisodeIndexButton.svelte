@@ -12,7 +12,7 @@
 	}
 </script>
 
-<li class="relative block aspect-square w-2 rounded-md">
+<li class="relative block aspect-square w-1 md:w-2 rounded-md">
 	<a
 		href={`/episodes/${id}`}
 		class="absolute inset-0 h-full w-full bg-white {isCurrent

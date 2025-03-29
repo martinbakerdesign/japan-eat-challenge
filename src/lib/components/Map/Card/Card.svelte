@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { tierTextVariants, Tiers, tierBGVariants } from '$constants';
+	import { Tiers, tierBGVariants } from '$constants';
 	import { episodes } from '$data';
 	import { cardState, onMouseLeave, hoveredRestaurant } from './index.svelte';
-	import { computePosition, offset, flip } from '@floating-ui/dom';
+	import { computePosition, offset, flip, shift } from '@floating-ui/dom';
 	import { InlineLink } from '$lib/components';
+	import { tick } from 'svelte';
 
 	let floating: HTMLElement, reference: HTMLElement;
 
@@ -19,15 +20,17 @@
 
 	function setPos([x, y]) {
 		if (reference && floating) {
-			computePosition(reference, floating, {
-				placement: 'top',
-				middleware: [offset(8), flip()]
-			}).then(({ x, y }) => {
-				Object.assign(floating.style, {
-					left: `${x}px`,
-					top: `${y}px`
+			tick().then(() => {
+				computePosition(reference, floating, {
+					placement: 'top',
+					middleware: [offset(), shift({padding: 8})]
+				}).then(({ x, y }) => {
+					Object.assign(floating.style, {
+						left: `${x}px`,
+						top: `${y}px`
+					});
 				});
-			});
+			})
 		}
 	}
 </script>

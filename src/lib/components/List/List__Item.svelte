@@ -19,7 +19,7 @@
 </script>
 
 <li
-	class={`relative mb-2 grid grid-cols-[auto_1fr_auto] items-center gap-x-8 rounded-lg p-2 ${bgFillVariants[+hasEpisode]}`}
+	class={`relative mb-2 grid grid-cols-[auto_1fr] lg:grid-cols-[auto_1fr_auto] items-center gap-x-8 rounded-lg p-2 ${bgFillVariants[+hasEpisode]}`}
 >
 	{#if hasEpisode && isRanked}
 		<InlineLink
@@ -30,7 +30,7 @@
 
 	<!-- ranking -->
 	<div
-		class="text-md col-start-1 col-end-2 flex w-10 items-center justify-center text-center font-semibold text-stone-800 {isRanked ? tierBGVariants[
+		class="text-md col-start-1 col-end-2 row-start-1 flex w-10 items-center justify-center text-center font-semibold text-stone-800 {isRanked ? tierBGVariants[
 			ranking
 		] ?? 'bg-transparent' : 'bg-neutral-600/50'} rounded-md px-4 py-2 w-10 h-10"
 	>
@@ -42,13 +42,13 @@
 	</div>
 
 	<!-- name -->
-	<h3 class="col-start-2 col-end-3 w-full">
+	<h3 class="col-start-2 row-start-1 col-end-3 w-full">
 		<span class="font-semibold">{englishName}</span>
 		{#if japaneseName}<span class="ml-7 opacity-55">{japaneseName}</span>{/if}
 	</h3>
 
 	<!-- category -->
-	<ul class="col-start-3 col-end-4 flex w-100 flex-wrap gap-1">
+	<ul class="col-start-2 row-start-2 lg:row-start-1 lg:col-start-3 lg:col-end-4 flex flex-wrap gap-1 w-full lg:w-60 2xl:w-100">
 		{#each restaurant.cat as cat}
 			<Tag>{cat}</Tag>
 		{/each}

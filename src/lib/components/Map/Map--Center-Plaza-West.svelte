@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { PlazaSections } from '$constants';
+	import { scale } from 'svelte/transition';
+	import { isTouch } from '../Nav/index.svelte';
     import { restaurantPolyClassname, interactiveRestaurants } from './index.svelte';
 
     let { highlight = null, clickable = false }: { clickable: boolean, highlight: number|null } = $props();
@@ -7,7 +9,7 @@
     let el: null|SVGElement = null;
 
     $effect(() => {
-        interactiveRestaurants(el, PlazaSections[0], highlight, clickable)
+        interactiveRestaurants(el, PlazaSections[0], highlight, clickable, isTouch.current)
     })
 </script>
 

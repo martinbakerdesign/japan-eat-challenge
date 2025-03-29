@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Card, cardState } from '$lib/components/Map/index.svelte';
+	import { Card, cardState, Zoom } from '$lib/components/Map/index.svelte';
     import List from '$lib/components/List';
 	import { onMount } from 'svelte';
 	import AdjacentSectionButton from './AdjacentSectionButton.svelte';
@@ -20,10 +20,7 @@
     let nextHref = $derived(!isLastSection ? `/plaza-map/${data.section === 'center-plaza' ? 'san-plaza' : 'center-plaza'}` : null);
     let nextLabel = $derived(!isLastSection ? data.section === 'center-plaza' ? 'San Plaza' : 'Center Plaza' : null);
 
-
-    const containerVariants = "w-full flex";
-
-    $inspect(data.highlight)
+    const containerVariants = "w-full md:w-32 flex row-start-2 md:row-start-1";
 
     onMount(() => {
         return () => {
@@ -33,7 +30,7 @@
     })
 </script>
 
-<div class="gap-x-2 grid grid-cols-[auto_1fr_auto] mb-2">
+<div class="gap-2 grid grid-cols-2 md:grid-cols-[auto_1fr_auto] mb-2">
 
     <div class={containerVariants}>
         <AdjacentSectionButton href={prevHref} dir='left'>
@@ -41,16 +38,16 @@
         </AdjacentSectionButton>
     </div>
 
-    <div class="h-[65vh] grid items-center grid-rows-[auto_1fr] w-full">
-
+    <div class="h-[65vh] grid items-center w-full row-start-1 col-start-1 md:col-start-2 col-end-3 relative">
         
-        <h2 class="text-xl font-semibold text-center mb-2 rounded-lg w-full bg-stone-600/15 p-4">
+        <h2 class="text-xs uppercase font-semibold text-center mb-2 rounded-lg absolute top-2 left-2 right-2 tracking-wider opacity-65 select-none pointer-events-none z-10">
             {sectionName}
         </h2>
 
-        <div class="w-full h-full overflow-hidden rounded-lg bg-stone-600/15 p-14">
+        <div class="w-full h-full overflow-hidden rounded-lg bg-stone-600/15 p-4 md:p-8 lg:p-14 zoom-window">
             {#if Component}
             <Component clickable={true} highlight={data.highlight} />
+            <Zoom />
             {/if}
         </div>
         <Card />
