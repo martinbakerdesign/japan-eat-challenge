@@ -7,6 +7,7 @@
 	import { Tag } from '$lib/components';
 	import { isTouch } from '$lib/components/Nav/index.svelte';
 	import { routeToPage } from '$utils';
+	import EpisodeSelect from './EpisodeSelect.svelte';
 
 	let { data }: { data: Episode } = $props();
 
@@ -113,22 +114,7 @@
 		{/each}
 	</ul>
 	{:else}
-	<select class="w-full text-center bg-stone-800/30 md:hidden h-full rounded-lg p-2 backdrop-blur-lg" value={data.id} onchange={changeEpisode}>
-		{#each episodes as episode, index (episode.id)}
-		<option value={episode.id} class="text-center w-full hover:bg-amber-500">Episode {episode.id}</option>
-		{/each}
-	</select>
+		<EpisodeSelect {episodes} value={data.id} />
 	{/if}
 	<AdjacentEpisodeButton direction="next" id={!isLast ? data.id : null} />
 </div>
-
-<style>
-	select {
-		&, &::picker(select) {
-			appearance: base-select;    
-		}
-		&::picker-icon {
-			display: none;
-		}
-	}
-</style>

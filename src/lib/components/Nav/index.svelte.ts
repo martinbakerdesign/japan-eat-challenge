@@ -1,9 +1,9 @@
 
-import { onNavigate } from '$app/navigation';
-
 export {default as Item} from './Nav__Item.svelte'
 
 export {default as TouchToggle} from './Nav__Touch-Toggle.svelte'
+
+export {default as Menu} from './Nav__Menu.svelte'
 
 export {default as default} from './Nav.svelte'
 
