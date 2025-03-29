@@ -5,7 +5,6 @@
 	onNavigate(hideTouchMenu);
 </script>
 
-{#if isTouch.current}
 <button
 	class="block md:hidden rounded-lg p-3 focus:outline-none border-stone-600/75 border-[1px] {isTouchMenuOpen.current ? 'bg-stone-800' : ''}"
 	onclick={toggleTouchMenu}
@@ -25,4 +24,3 @@
 		></span>
 	</div>
 </button>
-{/if}

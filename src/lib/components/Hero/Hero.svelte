@@ -7,7 +7,7 @@
 
 <header class="grid grid-rows-[auto_auto] md:grid-rows-[unset] md:grid-cols-[auto_1fr] gap-2 md:py-20 w-full overflow-hidden">
 
-    <Short id={latestEpisode?.vidId} class="rounded-2xl overflow-hidden w-80 row-start-2 md:row-start-1"/>
+    <Short id={latestEpisode?.vidId} class="rounded-2xl overflow-hidden row-start-2 md:row-start-1 w-full md:w-80"/>
 
     <div class="p-8 md:p-12 rounded-2xl gap-y-12 md:gap-y-20 flex items-center bg-tier-bg/15 h-full w-full max-w-full relative overflow-hidden row-start-1">
         <div class="absolute inset-0 opacity-10 pointer-events-none">

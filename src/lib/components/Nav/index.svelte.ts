@@ -11,6 +11,8 @@ export const isTouchMenuOpen = $state({current: false});
 
 export function toggleTouchMenu () {
     isTouchMenuOpen.current = !isTouchMenuOpen.current;
+    document.querySelector('#nav-menu')?.classList[isTouchMenuOpen.current ? 'remove' : 'add']('hidden');
+    document.querySelector('#nav-menu')?.classList[isTouchMenuOpen.current ? 'add' : 'remove']('flex');
 }
 
 import { MediaQuery } from 'svelte/reactivity';
