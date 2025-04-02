@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { tierBGVariants, Tiers } from '$constants';
 	import { restaurantToEpisodeMap } from '$data';
-	import { tierTextVariants } from '$constants';
 	import { InlineLink } from '$lib/components';
 	import { splitNameIntoEnglishAndJapanese } from '$utils';
 	import { bgFillVariants } from './';

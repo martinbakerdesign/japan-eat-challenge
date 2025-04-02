@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { CenterPlaza, CenterPlazaWest, Icon, SanPlaza, Short } from '$lib/components';
+	import { Icon, Map, Short } from '$lib/components';
 	import { episodes, restaurants } from '$data';
 	import { PlazaSectionNames, PlazaSections, tierBGVariants, tierTextVariants } from '$constants';
 	import AdjacentEpisodeButton from './AdjacentEpisodeButton.svelte';
@@ -15,13 +15,6 @@
 	let isLast = $derived(data.id === episodes.length);
 	let restaurant = $derived(restaurants.find((r) => r.id === data?.restaurant));
 	let plazaSection = $derived(restaurant.id.split('__')[0]);
-	let Map = $derived(
-		{
-			'center-plaza': CenterPlaza,
-			'san-plaza': SanPlaza,
-			'center-plaza-west': CenterPlazaWest
-		}[plazaSection]
-	);
 	let knownPlazaSection = $derived(PlazaSections.includes(plazaSection));
 	let highlight = $derived(knownPlazaSection ? +restaurant?.id.split('__')[1] : null);
 
@@ -51,7 +44,7 @@
 
 		{#if knownPlazaSection}
 			<a
-				class="relative col-start-1 row-start-4 md:col-start-2 md:row-start-1 md:row-end-5 flex h-full w-full aspect-[4/3] md:aspect-auto md:w-80 flex-col items-center justify-center overflow-hidden rounded-xl bg-stone-900/15 p-8 hover:bg-amber-800/15 zoom-window"
+				class="relative col-start-1 row-start-4 md:col-start-2 md:row-start-1 md:row-end-5 flex h-full w-full aspect-[4/3] lg:aspect-auto lg:w-56 xl:w-80 flex-col items-center justify-center overflow-hidden rounded-xl bg-stone-900/15 p-8 hover:bg-amber-800/15 zoom-window"
 				href="/plaza-map/{plazaSection}?highlight={highlight}"
 			>
 				<h3
@@ -59,7 +52,11 @@
 				>
 					{PlazaSectionNames[plazaSection]}
 				</h3>
-				<Map {highlight} />
+				<Map {...{
+					clickable: false,
+					plazaSection,
+					highlight
+				}} />
 			</a>
 		{/if}
 

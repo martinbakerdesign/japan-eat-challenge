@@ -67,8 +67,6 @@ export {default as filterEpsByTier} from './filterEpsByTier'
 
 export {default as getEpisodeById} from './getEpisodeById'
 
-export {default as hasRestaurantBeenReviewed} from './hasRestaurantBeenReviewed'
-
 export {default as doesRestaurantHaveEpisode} from './doesRestaurantHaveEpisode'
 
 export {default as removeEmojis} from './removeEmojis'
@@ -78,3 +76,5 @@ export {default as extractCategoriesFromRestaurants} from './extractCategoriesFr
 export {default as routeToPage} from './routeToPage'
 
 export {default as splitNameIntoEnglishAndJapanese} from './splitNameIntoEnglishAndJapanese'
+
+export {default as getEpisodeThumbPath} from './getEpisodeThumbPath'

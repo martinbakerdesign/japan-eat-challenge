@@ -1,5 +1,4 @@
 import { restaurantToEpisodeMap } from '$data';
-import doesRestaurantHaveEpisode from '$utils/doesRestaurantHaveEpisode';
 
 export {default as default} from './List.svelte'
 
@@ -17,10 +16,13 @@ export function sortRestaurants (restaurants: Restaurant[]|null|undefined): Rest
     ? []
     : restaurants
         .sort((a, b) => {
-            const aHasEpisode = doesRestaurantHaveEpisode(a);
-            const bHasEpisode = doesRestaurantHaveEpisode(b);
+            const aEpisode = restaurantToEpisodeMap.get(a.id);
+            const bEpisode = restaurantToEpisodeMap.get(b.id);
+            const aHasEpisode = aEpisode?.id != null;
+            const bHasEpisode = bEpisode?.id != null;
+
             return (aHasEpisode && bHasEpisode)
-                ? (restaurantToEpisodeMap.get(a.id).id - restaurantToEpisodeMap.get(b.id).id)
+                ? (aEpisode.id - bEpisode.id)
                 : aHasEpisode ? -1 : 1;
         })
 }

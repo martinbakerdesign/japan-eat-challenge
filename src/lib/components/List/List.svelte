@@ -7,7 +7,7 @@
     let sorted = $derived(sortRestaurants(restaurants));
 </script>
 
-<ul class="">
+<ul>
     {#each sorted as restaurant (restaurant.id)}
         <ListItem {restaurant} />
     {/each}

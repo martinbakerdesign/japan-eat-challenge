@@ -1,15 +1,13 @@
 <script lang="ts">
-	import { Card, cardState, Zoom } from '$lib/components/Map/index.svelte';
-    import List from '$lib/components/List';
+    import { Map, List, Card, Zoom } from '$lib/components';
+	import { cardState } from '$lib/components/Map';
 	import { onMount } from 'svelte';
 	import AdjacentSectionButton from './AdjacentSectionButton.svelte';
 	import { PlazaSections, PlazaSectionNames } from '$constants';
 	import type { PlazaPageData } from './+page';
-    import {components} from './'
 
     let { data }: { data: PlazaPageData } = $props();
 
-    let Component = $derived(components.get(data.section));
     let sectionName = $derived(PlazaSectionNames[data.section]);
 
     let isFirstSection = $derived(PlazaSections[0] === data?.section);
@@ -44,11 +42,9 @@
             {sectionName}
         </h2>
 
-        <div class="w-full h-full overflow-hidden rounded-lg bg-stone-600/15 p-4 md:p-8 lg:p-14 zoom-window">
-            {#if Component}
-            <Component clickable={true} highlight={data.highlight} />
+        <div class="w-full h-full rounded-lg bg-stone-600/15 p-4 md:p-8 lg:p-14 zoom-window">
+            <Map clickable={true} highlight={data.highlight} plazaSection={data.section} />
             <Zoom />
-            {/if}
         </div>
         <Card />
     </div>

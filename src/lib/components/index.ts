@@ -6,6 +6,8 @@ export {default as Short} from './Short';
 
 export {default as Hero} from './Hero';
 
+export {default as List} from './List';
+
 export {default as Tier} from './Tier';
 
 export {default as TierList} from './TierList';
@@ -16,4 +18,4 @@ export {default as InlineLink} from './InlineLink.svelte';
 
 export {default as Tag} from './Tag';
 
-export {CenterPlazaWest, CenterPlaza, SanPlaza} from './Map/index.svelte';
+export {default as Map, Card, Zoom} from './Map';

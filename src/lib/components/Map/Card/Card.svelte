@@ -12,8 +12,6 @@
 	let hasEpisode = $derived(episode != null);
 	$effect(() => {
 		setPos(cardState.pos);
-	});
-	$effect(() => {
 		if (cardState.pos[0] !== 0 || cardState.pos[1] !== 0) return;
 		cardState.show = false;
 	});
@@ -36,7 +34,7 @@
 </script>
 
 <div
-	class="pointer-events-none absolute select-none"
+	class="pointer-events-none fixed select-none"
 	style="left: {cardState.pos[0]}px; top: {cardState.pos[1]}px;"
 	bind:this={reference}
 >
@@ -45,7 +43,7 @@
 
 <div
 	bind:this={floating}
-	class="hover:transition-scale absolute top-0 left-0 grid max-w-80 grid-cols-[auto_1fr] gap-x-2 rounded-lg bg-stone-600 p-2 shadow-xl hover:scale-105 hover:duration-200 items-start"
+	class="hover:transition-scale fixed top-0 left-0 grid max-w-80 grid-cols-[auto_1fr] gap-x-2 rounded-lg bg-stone-600 p-2 shadow-xl hover:scale-105 hover:duration-200 items-start"
 	id="map__card"
 	onmouseleave={onMouseLeave}
   hidden={!cardState.show}

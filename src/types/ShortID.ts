@@ -1,1 +1,0 @@
-export type ShortID = string | null | undefined;
